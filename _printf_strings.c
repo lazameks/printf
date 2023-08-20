@@ -31,13 +31,3 @@ int _putstr(char *s)
 	}
 	return (r_val);
 }
-
-/**
- * _putptr - prints a pointer address
- * @p: pointer address to be printed
- */
-/* void _putptr(unsigned long int p)
-{
-	_putstr("0x");
-	_printf_hex(p, 0);
-}*/
