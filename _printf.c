@@ -43,6 +43,8 @@ int _printf(const char *format, ...)
 			_putchar('%');
 			i++;
 		}
+		else 
+			return (-1);
 
 		r_val += 1;
 	}
