@@ -33,17 +33,22 @@ int _printf(const char *format, ...)
 		else if (format[i + 1] == 's')
 		{
 			str = va_arg(args, char *);
-			r_val += _putstr(str);
-			r_val--;
-			i++;
+			if (str != NULL)
+			{
+				r_val += _putstr(str);
+				r_val--;
+				i++;
+			}
+			else
+				return (-1);
 		}
 		else if (format[i + 1] == '%')
 		{
 			_putchar('%');
 			i++;
 		}
-	/*	else if (format[i + 1] == '\0')*/
-/*			return (-1);*/
+		else if (format[i + 1] == '\0')
+			return (-1);
 		else
 			return (-1);
 		r_val += 1;
