@@ -34,6 +34,7 @@ int _printf(const char *format, ...)
 		{
 			str = va_arg(args, char *);
 			r_val += _putstr(str);
+			r_val--;
 			i++;
 		}
 		else if (format[i + 1] == '%')
