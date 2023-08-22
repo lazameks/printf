@@ -50,9 +50,10 @@ int _printf(const char *format, ...)
 			i++;
 		}
 		else if (format[i + 1] == '\0')
+		{
 			_putchar('%');
 			i++;	
-
+		}
 		r_val += 1;
 	}
 	va_end(args);
