@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
 			_putchar('%');
 			i++;
 		}
-		else 
+		else if (format[i + 1] == '\0')
 			return (-1);
 
 		r_val += 1;
