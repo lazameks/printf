@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	int i, r_val = 0;
-	char *str;
+	char *str, character;
 	va_list args;
 
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
@@ -27,7 +27,10 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i + 1] == 'c')
 		{
-			_putchar((char)(va_arg(args, int)));
+			character  = (char)(va_arg(args, int));
+			if (character == '\0')
+				return (-1);
+			_putchar(character);
 			i++;
 		}
 		else if (format[i + 1] == 's')
@@ -44,8 +47,6 @@ int _printf(const char *format, ...)
 			_putchar('%');
 			i++;
 		}
-		else if (format[i + 1] == '\0')
-			return (-1);
 		else
 			return (-1);
 		r_val += 1;
