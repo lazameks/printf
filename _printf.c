@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	int i, r_val = 0;
-
+	char *str;
 	va_list args;
 
 	if (format == NULL)
@@ -32,9 +32,17 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i + 1] == 's')
 		{
-			r_val += _putstr(va_arg(args, char *));
-			r_val--;
-			i++;
+			str = va_arg(args, char *);
+			if (str == NULL)
+			{
+				return (-1);
+			}
+			else
+			{
+				r_val += _putstr(str);
+				r_val--;
+				i++;
+			}
 		}
 		else if (format[i + 1] == '%')
 		{
@@ -42,8 +50,6 @@ int _printf(const char *format, ...)
 			i++;
 		}
 		else if (format[i + 1] == '\0')
-			return (-1);
-		else
 			return (-1);
 
 		r_val += 1;
