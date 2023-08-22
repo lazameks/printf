@@ -33,6 +33,8 @@ int _printf(const char *format, ...)
 		else if (format[i + 1] == 's')
 		{
 			str = va_arg(args, char *);
+			if (str == NULL)
+				str = "(null)";
 			r_val += _putstr(str);
 			r_val--;
 			i++;
