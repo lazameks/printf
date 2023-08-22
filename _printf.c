@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	int i, r_val = 0;
-	char *str, character;
+	char *str;
 	va_list args;
 
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
@@ -27,10 +27,7 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i + 1] == 'c')
 		{
-			character  = (char)(va_arg(args, int));
-			if (character == '\0')
-				return (-1);
-			_putchar(character);
+			_putchar((char)(va_arg(args, int)));
 			i++;
 		}
 		else if (format[i + 1] == 's')
