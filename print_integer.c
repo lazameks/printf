@@ -10,18 +10,24 @@ void print_integer(int num, int *char_count)
 {
 	char minus_sign, digit_char;
 
-	if (num < 0)
+	if (num < 0 && *char_count == 0)
 	{
-		num = -num;
 		minus_sign = '-';
 		write(1, &minus_sign, 1);
 		(*char_count)++;
 	}
-	if (num >= 10)
+	if (num <= -10 || num >= 10)
 	{
 		print_integer(num / 10, char_count);
 	}
-	(*char_count)++;
-	digit_char = num % 10 + '0';
+	if (num < 0)
+	{
+		digit_char = '0' - (num % 10);
+	}
+	else
+	{
+		digit_char = num % 10 + '0';
+	}
 	write(1, &digit_char, 1);
+	(*char_count)++;
 }
