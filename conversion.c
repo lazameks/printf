@@ -8,6 +8,7 @@
 void conversion_handler(const char *format, va_list args, int *char_count)
 {
 	char character, *str;
+	int n;
 
 	format++;
 	if (*format == 'c')
@@ -23,6 +24,12 @@ void conversion_handler(const char *format, va_list args, int *char_count)
 	else if (*format == '%')
 	{
 		print_character('%', char_count);
+	}
+	else if (*format == 'd' || *format == 'i')
+	{
+		n = va_arg(args, int);
+		print_integer(n, char_count);
+
 	}
 	else
 	{
