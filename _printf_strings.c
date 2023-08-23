@@ -20,16 +20,17 @@ int _putchar(char c)
 int _putstr(char *s)
 {
 	int len = 0, r_val = 0;
-
-	if (s)
+	if (s == NULL)
+		return (-1);
+	else
 	{
 		while (*(s + len))
 		{
 			_putchar(*(s + len++));
 			r_val += 1;
 		}
+		return (r_val);
 	}
-	return (r_val);
 }
 /**
 *_str_len - calculates the length of the string
