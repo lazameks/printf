@@ -6,9 +6,8 @@
 */
 int _printf(const char *format, ...)
 {
-	int char_count = 0, string_length;
+	int char_count = 0;
 	va_list args;
-	char *str, character;
 
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
@@ -19,43 +18,12 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			char_count++;
-			write(1, format, 1);
+			print_character(*format, &char_count);
 		}
 		else
 		{
+			conversion_handler(format, args, &char_count);
 			format++;
-			if (*format == 'c')
-			{
-				character = (char)va_arg(args, int);
-					write(1, &character, 1);
-					char_count ++;
-
-			}
-			else if (*format == 's')
-			{
-				str = va_arg(args, char*);
-				if (str == NULL)
-					str = "(null)";
-				string_length = strlen(str);
-				write(1, str, string_length);
-				char_count += string_length;
-			}
-			else if (*format == '%')
-			{
-				write(1, format, 1);
-				char_count++;
-			}
-			else
-			{
-				write(1, "%", 1);
-				char_count++;
-				if (*format != '\0')
-				{
-					write(1, format, 1);
-					char_count++;
-				}
-			}
 		}
 		format++;
 

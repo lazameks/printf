@@ -1,51 +1,32 @@
 #include "main.h"
 
 /**
- * _putchar - write the character c to stdout
+ * print_character - write the character c to stdout
  * @c: the character to print
- *
- * Return: On success 1, On error -1
+ *@char_count: pointer to the character count
+ * Return: void
  */
-int _putchar(char c)
+void print_character(char c, int *char_count)
 {
-	return (write(1, &c, 1));
+	(write(1, &c, 1));
+	(*char_count)++;
 }
 
 /**
- * _putstr - prints a string
+ * print_string - prints a string
  * @s: the string to be printed
- *
- * Return: r_val
+ *@char_count: pointer to the character count.
+ * Return: nothing
  */
-int _putstr(char *s)
+void print_string(const char *s, int *char_count)
 {
-	int len = 0, r_val = 0;
-	if (s == NULL)
-		return (-1);
-	else
-	{
-		while (*(s + len))
-		{
-			_putchar(*(s + len++));
-			r_val += 1;
-		}
-		return (r_val);
-	}
-}
-/**
-*_str_len - calculates the length of the string
-*@str: string to be calculated
-*Return: length of string
-*/
-int _str_len(char *str)
-{
-	int len = 0;
-	int i = 0;
+	int string_length;
 
-	while (str[i] != '\0')
+	if (s == NULL)
 	{
-		i++;
-		len++;
+		s = "(null)";
 	}
-	return (len - 1);
+	string_length = strlen(s);
+	write(1, s, string_length);
+	(*char_count) += string_length;
 }

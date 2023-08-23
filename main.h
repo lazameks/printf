@@ -8,8 +8,8 @@
 #include <string.h>
 
 /* Functions Header prototypes*/
+void conversion_handler(const char *format, va_list args, int *char_count);
 int _printf(const char *format, ...);
-int _putchar(char c);
-int _putstr(char *s);
-int _str_len(char *str);  
+void print_character(char c, int *char_count);
+void print_string(const char *s, int *char_count);
 #endif
