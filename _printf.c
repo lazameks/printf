@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stddef.h>
 
 /**
  * _printf - print endless args
@@ -10,12 +11,10 @@
 int _printf(const char *format, ...)
 {
 	int i, r_val = 0;
-
+	char *str;
 	va_list args;
 
-	if (format == NULL)
-		return (-1);
-	if (format[0] == '%' && format[1] == '\0')
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	if (format[0] == '%' && format[1] == 32)
 		return (-1);
@@ -34,7 +33,10 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i + 1] == 's')
 		{
-			r_val += _putstr(va_arg(args, char *));
+			str = va_arg(args, char *);
+			if (str == NULL)
+				str = "(null)";
+			r_val += _putstr(str);
 			r_val--;
 			i++;
 		}
@@ -43,9 +45,8 @@ int _printf(const char *format, ...)
 			_putchar('%');
 			i++;
 		}
-		else 
+		else
 			return (-1);
-
 		r_val += 1;
 	}
 	va_end(args);
