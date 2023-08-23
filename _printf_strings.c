@@ -31,3 +31,20 @@ int _putstr(char *s)
 	}
 	return (r_val);
 }
+/**
+*_str_len - calculates the length of the string
+*@str: string to be calculated
+*Return: length of string
+*/
+int _str_len(char *str)
+{
+	int len = 0;
+	int i = 0;
+
+	while (str[i] != '\0')
+	{
+		i++;
+		len++;
+	}
+	return (len - 1);
+}
