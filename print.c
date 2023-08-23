@@ -28,17 +28,8 @@ int _printf(const char *format, ...)
 			if (*format == 'c')
 			{
 				character = (char)va_arg(args, int);
-				if (character == '\0')
-				{
-					character = ' ';
 					write(1, &character, 1);
 					char_count ++;
-				}
-				else
-				{
-					write(1, &character, 1);
-					char_count++;
-				}
 
 			}
 			else if (*format == 's')
