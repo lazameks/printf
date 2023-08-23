@@ -12,8 +12,6 @@ int _printf(const char *format, ...)
 
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-	if (format[0] == '%' && format[1] == 32)
-		return (-1);
 	va_start(args, format);
 	while (*format)
 	{
@@ -28,8 +26,16 @@ int _printf(const char *format, ...)
 			if (*format == 'c')
 			{
 				character = (char)va_arg(args, int);
-				write(1, &character, 1);
-				char_count++;
+				if (character == '\0')
+				{
+					write(1, "(null)", 6);
+					char_count +=6;
+				}
+				else
+				{
+					write(1, &character, 1);
+					char_count++;
+				}
 
 			}
 			else if (*format == 's')
@@ -45,6 +51,16 @@ int _printf(const char *format, ...)
 			{
 				write(1, format, 1);
 				char_count++;
+			}
+			else
+			{
+				write(1, "%", 1);
+				char_count++;
+				if (*format != '\0')
+				{
+					write(1, format, 1);
+					char_count++;
+				}
 			}
 		}
 		format++;
